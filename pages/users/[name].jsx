@@ -2,7 +2,7 @@ import fetch from 'isomorphic-unfetch';
 import css from 'styled-jsx/css';
 import Profile from '../../components/Profile';
 import Repositories from '../../components/Repositories';
-import TOKEN from '/PrivateToken';
+import { PRIVATE_TOKEN } from '../../config/PrivateToken';
 
 const style = css`
   .user-contents-wrapper {
@@ -29,7 +29,7 @@ export const getServerSideProps = async ({ query }) => {
 
     const userRes = await fetch(`https://api.github.com/users/${name}`, {
       headers: {
-        Authorization: `token ${TOKEN}`,
+        Authorization: `token ${PRIVATE_TOKEN}`,
       },
     });
     if (userRes.status === 200) {
@@ -39,7 +39,7 @@ export const getServerSideProps = async ({ query }) => {
     }
     const repoRes = await fetch(`https://api.github.com/users/${name}/repos?sort=updated&page=${page}&per_page=10`, {
       headers: {
-        Authorization: `token ${TOKEN}`,
+        Authorization: `token ${PRIVATE_TOKEN}`,
       },
     });
     if (repoRes.status === 200) {
