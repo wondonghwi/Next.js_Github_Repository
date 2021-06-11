@@ -1,7 +1,6 @@
 import fetch from 'isomorphic-unfetch';
 
 const name = ({ user }) => {
-  console.log(user);
   const username = user && user.name;
   return <div>{username}</div>;
 };
